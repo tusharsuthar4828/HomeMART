@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "20972072093",
+    "firebase_url": "https://homemart-f3855.firebaseio.com",
+    "project_id": "homemart-f3855",
+    "storage_bucket": "homemart-f3855.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20972072093:android:9e3d133c04893a8bcd3874",
+        "android_client_info": {
+          "package_name": "com.homemart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20972072093-uife6mff51a4t3777geudk2985b2mvi7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.homemart",
+            "certificate_hash": "caa87a251f4aa5a1e45af8a63aa8c6c0bd1c3fc5"
+          }
+        },
+        {
+          "client_id": "20972072093-f2aknc07mca15kv5f70apeg8nh3m832k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2J_zQXm4QN19mRFEwmG8KtFDNTDqitxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20972072093-f2aknc07mca15kv5f70apeg8nh3m832k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
