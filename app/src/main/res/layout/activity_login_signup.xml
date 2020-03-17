@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".BasicActivities.LoginSignUpActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue_700"
+        android:gravity="center_horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HOMEMART"
+            android:textSize="30sp"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/signin_linearlayout"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login !"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/signin_email_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@drawable/cursor"
+                android:hint="Email Id"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_mail"
+                android:drawablePadding="10dp"
+                android:background="@null"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/signin_password_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@drawable/cursor"
+                android:hint="Password"
+                android:maxLength="8"
+                android:inputType="textPassword"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_key"
+                android:drawablePadding="10dp"
+                android:background="@null"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"/>
+
+            <Button
+                android:id="@+id/signin_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/raisedbutton"
+                android:text="Sign In"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/flatbutton"
+                android:textStyle="bold"
+                android:text="Don't have an account ?"
+                android:layout_gravity="center"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/signup_linearlayout"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register !"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/signup_name_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@drawable/cursor"
+                android:hint="Name"
+                android:inputType="text"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_id_card"
+                android:drawablePadding="10dp"
+                android:background="@null"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/signup_phoneno_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@drawable/cursor"
+                android:hint="Phone No"
+                android:maxLength="10"
+                android:inputType="number"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_smartphone_2"
+                android:drawablePadding="10dp"
+                android:background="@null"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/signup_email_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@drawable/cursor"
+                android:hint="Email Id"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_mail"
+                android:drawablePadding="10dp"
+                android:background="@null"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/signup_password_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@drawable/cursor"
+                android:hint="Password"
+                android:maxLength="8"
+                android:inputType="textPassword"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_key"
+                android:drawablePadding="10dp"
+                android:background="@null"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"/>
+            <Button
+                android:id="@+id/signup_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/raisedbutton"
+                android:text="Sign up"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
+            <Button
+                android:id="@+id/registered_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/flatbutton"
+                android:text="Registred User ?"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
