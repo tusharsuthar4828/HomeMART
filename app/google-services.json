@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "20972072093-7ijq9b54lmgspor89h61b6bb54mv3o0p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.homemart",
+            "certificate_hash": "8234262bb58fc68735d67821dcdf9636b9cd8369"
+          }
+        },
+        {
           "client_id": "20972072093-uife6mff51a4t3777geudk2985b2mvi7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
