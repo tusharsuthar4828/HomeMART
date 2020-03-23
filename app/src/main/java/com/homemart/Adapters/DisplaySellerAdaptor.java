@@ -39,7 +39,7 @@ public class DisplaySellerAdaptor extends RecyclerView.Adapter<DisplaySellerAdap
     public void onBindViewHolder(@NonNull DisplaySellerViewHolder holder, int position) {
         Log.d("Log", "onBindViewHolder: "+mSellerList.get(position).getEmail());
         holder.mSellerTextView.setText(mSellerList.get(position).getUsername() + "");
-
+        mSellerList.get(position).getCategory();
     }
 
     @Override

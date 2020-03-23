@@ -6,16 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,15 +22,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.homemart.Adapters.DisplayCategoryAdapter;
-import com.homemart.Adapters.DisplayProductAdapter;
+import com.homemart.Adapters.DisplayOffersAdapter;
 import com.homemart.Adapters.DisplaySellerAdaptor;
 import com.homemart.R;
-import com.homemart.models.Product;
 import com.homemart.models.Seller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 /**
@@ -65,52 +62,41 @@ public class Home extends Fragment {
         //FirebaseUser currentUser = mAuth.getCurrentUser();
         //Toast.makeText(getActivity(), ""+mAuth.getUid(), Toast.LENGTH_SHORT).show();
 
-        /*mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("sellers")
-                .child(mAuth.getUid()).child("category").child("cake");*/
-        mCategoryDatabaseReference = FirebaseDatabase.getInstance().getReference().child("sellers")
-                .child(mAuth.getUid()).child("category");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("links").child("offerlink");
+        mCategoryDatabaseReference = FirebaseDatabase.getInstance().getReference().child("category");
         mSellerDatabaseReference = FirebaseDatabase.getInstance().getReference().child("sellers");
 
         //List of data
-        //List<Product> mProductList = new ArrayList<>();
+        List<String> mOffersList = new ArrayList<>();
         List<String> mCategoryList = new ArrayList<>();
         List<Seller> mSellerList = new ArrayList<>();
 
 
-        //RecyclerView mProductRecyclerview = rootView.findViewById(R.id.product_recyclerView);
+        RecyclerView mOffersRecyclerview = rootView.findViewById(R.id.offers_recyclerView);
         RecyclerView mCategoryRecyclerview = rootView.findViewById(R.id.category_recyclerview);
         RecyclerView mSellerRecyclerview = rootView.findViewById(R.id.seller_recyclerview);
 
 
-        //mProductRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        mCategoryRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        mOffersRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        mCategoryRecyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         mSellerRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
 
         //DATA FETCHING
-        /*mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                Log.d("Log1", "onDataChange: " + children);
+//                Log.d("Log1", "onDataChange: " + children);
 
-                mProductList.clear();
+                mOffersList.clear();
                 for (DataSnapshot datasnapshotobject : children) {
                     //Log.d("Log2", "onDataChange2: "+datasnapshotobject.getValue());
 
-
-                    Object object = datasnapshotobject.getValue(Object.class);
-                    String json = new Gson().toJson(object);
-                    Product product = new Gson().fromJson(json, Product.class);
-
-
-                    //Log.d("Log3", "onDataChange: "+product.getName());
-
-
-                    mProductList.add(product);
+                    mOffersList.add(datasnapshotobject.getValue().toString());
                 }
-                mProductRecyclerview.setAdapter(new DisplayProductAdapter(mProductList));
+                mOffersRecyclerview.setAdapter(new DisplayOffersAdapter(mOffersList));
 
 
             }
@@ -119,7 +105,7 @@ public class Home extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
         mCategoryDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -146,35 +132,6 @@ public class Home extends Fragment {
             }
         });
 
-        mSellerDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                Log.d("Log1", "onDataChange: " + children);
-
-                mSellerList.clear();
-                for (DataSnapshot datasnapshotobject : children) {
-
-                    Object object = datasnapshotobject.getValue(Object.class);
-                    String json = new Gson().toJson(object);
-                    Log.d("Log3", "onDataChange: "+json);
-                    Seller seller = new Gson().fromJson(json, Seller.class);
-                    Log.d("Log4", "onDataChange: "+seller.getUsername());
-                    mSellerList.add(seller);
-
-                }
-
-                mSellerRecyclerview.setAdapter(new DisplaySellerAdaptor(mSellerList));
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
         return rootView;

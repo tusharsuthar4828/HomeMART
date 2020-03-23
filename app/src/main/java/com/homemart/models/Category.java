@@ -1,6 +1,7 @@
 package com.homemart.models;
 
 public class Category {
+
     Product product;
 
     public Product getProduct() {
