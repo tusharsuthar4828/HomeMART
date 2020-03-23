@@ -52,7 +52,7 @@ public class DisplayProductAdapter extends RecyclerView.Adapter<DisplayProductAd
                 Context context = holder.itemView.getContext();
                 FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_conatiner, new DisplayEachProduct(), "DisplayEachProduct").commit();
-                
+
             }
         });
     }

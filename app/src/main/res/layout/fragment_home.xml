@@ -3,19 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Home"
-    android:layout_marginTop="?attr/actionBarSize">
+    android:layout_marginTop="?attr/actionBarSize"
+    tools:context=".Fragments.Home">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Try these recents !"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/product_recyclerView"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="What would perfer today ?"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Shops nearby !"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/seller_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
 
     </LinearLayout>
 

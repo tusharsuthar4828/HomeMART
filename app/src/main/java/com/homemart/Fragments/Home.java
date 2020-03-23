@@ -22,12 +22,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.homemart.Adapters.DisplayCategoryAdapter;
 import com.homemart.Adapters.DisplayProductAdapter;
+import com.homemart.Adapters.DisplaySellerAdaptor;
 import com.homemart.R;
 import com.homemart.models.Product;
+import com.homemart.models.Seller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -51,37 +55,59 @@ public class Home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        DatabaseReference mDatabaseReference;
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        Toast.makeText(getActivity(), ""+mAuth.getUid(), Toast.LENGTH_SHORT).show();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("sellers")
-                .child(mAuth.getUid()).child("category").child("cake");
-
-        List<Product> mProductList = new ArrayList<>();
-
-
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView mProductRecyclerview = rootView.findViewById(R.id.product_recyclerView);
-        mProductRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        //FIREBASE
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        DatabaseReference mDatabaseReference;
+        DatabaseReference mCategoryDatabaseReference;
+        DatabaseReference mSellerDatabaseReference;
+        //FirebaseUser currentUser = mAuth.getCurrentUser();
+        //Toast.makeText(getActivity(), ""+mAuth.getUid(), Toast.LENGTH_SHORT).show();
+
+        /*mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("sellers")
+                .child(mAuth.getUid()).child("category").child("cake");*/
+        mCategoryDatabaseReference = FirebaseDatabase.getInstance().getReference().child("sellers")
+                .child(mAuth.getUid()).child("category");
+        mSellerDatabaseReference = FirebaseDatabase.getInstance().getReference().child("sellers");
+
+        //List of data
+        //List<Product> mProductList = new ArrayList<>();
+        List<String> mCategoryList = new ArrayList<>();
+        List<Seller> mSellerList = new ArrayList<>();
 
 
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        //RecyclerView mProductRecyclerview = rootView.findViewById(R.id.product_recyclerView);
+        RecyclerView mCategoryRecyclerview = rootView.findViewById(R.id.category_recyclerview);
+        RecyclerView mSellerRecyclerview = rootView.findViewById(R.id.seller_recyclerview);
+
+
+        //mProductRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        mCategoryRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        mSellerRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+
+
+        //DATA FETCHING
+        /*mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 Log.d("Log1", "onDataChange: " + children);
 
                 mProductList.clear();
                 for (DataSnapshot datasnapshotobject : children) {
-                    Log.d("Log2", "onDataChange2: "+datasnapshotobject.getValue());
+                    //Log.d("Log2", "onDataChange2: "+datasnapshotobject.getValue());
+
+
                     Object object = datasnapshotobject.getValue(Object.class);
                     String json = new Gson().toJson(object);
                     Product product = new Gson().fromJson(json, Product.class);
-                    Log.d("Log3", "onDataChange: "+product.getName());
+
+
+                    //Log.d("Log3", "onDataChange: "+product.getName());
+
+
                     mProductList.add(product);
                 }
                 mProductRecyclerview.setAdapter(new DisplayProductAdapter(mProductList));
@@ -93,28 +119,62 @@ public class Home extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+        });*/
+
+        mCategoryDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                Log.d("Log1", "onDataChange: " + children);
+
+                mCategoryList.clear();
+                for (DataSnapshot datasnapshotobject : children) {
+
+
+                    mCategoryList.add(datasnapshotobject.getKey() + "");
+                }
+
+                mCategoryRecyclerview.setAdapter(new DisplayCategoryAdapter(mCategoryList));
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
 
+        mSellerDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                Log.d("Log1", "onDataChange: " + children);
+
+                mSellerList.clear();
+                for (DataSnapshot datasnapshotobject : children) {
+
+                    Object object = datasnapshotobject.getValue(Object.class);
+                    String json = new Gson().toJson(object);
+                    Log.d("Log3", "onDataChange: "+json);
+                    Seller seller = new Gson().fromJson(json, Seller.class);
+                    Log.d("Log4", "onDataChange: "+seller.getUsername());
+                    mSellerList.add(seller);
+
+                }
+
+                mSellerRecyclerview.setAdapter(new DisplaySellerAdaptor(mSellerList));
 
 
-        //FETCH DATA
+            }
 
-        /*
-        Product p = new Product();
-        p.setDescription("1");
-        p.setImageURL("as");
-        p.setName("cakee");
-        p.setPrice(890);
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        mProductList.add(p);
-        p = new Product();
-        p.setDescription("1");
-        p.setImageURL("as");
-        p.setName("cakee2");
-        p.setPrice(590);
-
-        mProductList.add(p);*/
-
+            }
+        });
 
 
         return rootView;

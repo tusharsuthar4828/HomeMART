@@ -63,13 +63,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new Home(), "HOME").commit();
-
     }
 
 
     @Override
     public void onBackPressed() {
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag("SELECTBUDGET");
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag("DisplayEachProduct");
         if (fragment != null && fragment.isVisible()) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new Home(), "HOME").commit();
         } else {
