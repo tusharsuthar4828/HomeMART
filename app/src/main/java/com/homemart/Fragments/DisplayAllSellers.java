@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,10 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 import com.homemart.Adapters.DisplaySellerAdaptor;
 import com.homemart.R;
-import com.homemart.models.Seller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +32,9 @@ import java.util.List;
  */
 public class DisplayAllSellers extends Fragment {
 
-    private String mCategoryName;
+    public static String mCategoryName;
     public DisplayAllSellers() {
         // Required empty public constructor
-    }
-
-    public DisplayAllSellers(String mCategoryName) {
-        this.mCategoryName = mCategoryName;
     }
 
     @Override
@@ -64,7 +57,7 @@ public class DisplayAllSellers extends Fragment {
 
         mSellersDatabaseReference = FirebaseDatabase.getInstance().getReference().child("sellers");
 
-        List<Seller> mSellerList = new ArrayList<>();
+        List<DataSnapshot> mSellerList = new ArrayList<>();
 
         RecyclerView mSellerRecyclerview = rootView.findViewById(R.id.seller_recyclerview);
 
@@ -80,15 +73,17 @@ public class DisplayAllSellers extends Fragment {
                 mSellerList.clear();
                 for (DataSnapshot datasnapshotobject : children) {
 
-                    for(DataSnapshot dataSnapshotobject2:datasnapshotobject.child("category").getChildren()){
-                        if(dataSnapshotobject2.getKey().equals(mCategoryName)){
+                    for(DataSnapshot dataSnapshotobject2:datasnapshotobject.child("categories").getChildren()){
 
-                            Object object = datasnapshotobject.getValue(Object.class);
+                        if(dataSnapshotobject2.getKey().equals(mCategoryName) && !dataSnapshotobject2.getValue().toString().equals("nothing")){
+
+                            /*Object object = datasnapshotobject.getValue(Object.class);
                             String json = new Gson().toJson(object);
                             Log.d("Log3", "onDataChange: "+json);
+
                             Seller seller = new Gson().fromJson(json, Seller.class);
-                            Log.d("Log4", "onDataChange: "+seller.getUsername());
-                            mSellerList.add(seller);
+                            Log.d("Log4", "onDataChange: "+seller.getUsername());*/
+                            mSellerList.add(datasnapshotobject);
 
                         }
                     }
@@ -96,7 +91,9 @@ public class DisplayAllSellers extends Fragment {
 
                 }
 
-                mSellerRecyclerview.setAdapter(new DisplaySellerAdaptor(mSellerList));
+                DisplaySellerAdaptor displaySellerAdaptor = new DisplaySellerAdaptor(mSellerList);
+                displaySellerAdaptor.setCategory(mCategoryName);
+                mSellerRecyclerview.setAdapter(displaySellerAdaptor);
 
 
             }

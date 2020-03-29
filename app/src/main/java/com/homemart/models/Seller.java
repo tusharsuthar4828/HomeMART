@@ -3,17 +3,27 @@ package com.homemart.models;
 
 public class Seller {
 
-    private String username, email, password, imageURL;
-    private Category category;
-    private String phoneno;
+    private String username, email, password, imageURL, phoneno, description;
+    private Categories categories;
+    private int rating;
 
-    public Seller(String username, String email, String password, String imageURL, Category category, String phoneno) {
+    public Seller(String username, String email, String password, String imageURL, String phoneno, String description, int rating) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.imageURL = imageURL;
-        this.category = category;
         this.phoneno = phoneno;
+        this.description = description;
+        this.rating = rating;
+    }
+
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public String getUsername() {
@@ -48,20 +58,21 @@ public class Seller {
         this.imageURL = imageURL;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public String  getPhoneno() {
+    public String getPhoneno() {
         return phoneno;
     }
 
     public void setPhoneno(String phoneno) {
         this.phoneno = phoneno;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }
 

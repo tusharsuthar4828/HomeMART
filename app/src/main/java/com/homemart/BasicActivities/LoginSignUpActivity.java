@@ -10,15 +10,19 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.homemart.MainActivity;
 import com.homemart.R;
-import com.homemart.models.User;
+import com.homemart.models.Seller;
 
 import java.util.Objects;
 
@@ -62,11 +66,12 @@ public class LoginSignUpActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null){
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
             Intent intent = new Intent(LoginSignUpActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -81,7 +86,7 @@ public class LoginSignUpActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mAuth = FirebaseAuth.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("User");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("sellers");
 
         mRegisterButton.setOnClickListener(v -> {
             mSignInLinearLayout.setVisibility(View.GONE);
@@ -159,7 +164,9 @@ public class LoginSignUpActivity extends AppCompatActivity {
         String mEmail = mSignUpEmailEditext.getText().toString().trim();
         String mPassword = mSignUpPasswordEditext.getText().toString().trim();
 
-        final User user = new User(mUsername, mEmail, mPassword, mPhone);
+        //final User user = new User(mUsername, mEmail, mPassword, mPhone);
+
+        Seller seller = new Seller(mUsername, mEmail, mPassword, "", mPhone, "", 0);
 
         final ProgressDialog progressDialog = ProgressDialog.show(this, "Please wait...", "Processing...", true);
         (mFirebaseAuth.createUserWithEmailAndPassword(mEmail, mPassword))
@@ -170,11 +177,30 @@ public class LoginSignUpActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginSignUpActivity.this, "Registration successful", Toast.LENGTH_LONG).show();
                         String unique_id = mFirebaseAuth.getUid();
+                        mDatabaseReference.child(unique_id).setValue(seller);
+
+                        //List<String> categorylist = new ArrayList<>();
+
+                        FirebaseDatabase.getInstance().getReference().child("links").child("category").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                                for (DataSnapshot dataSnapshotobject : children) {
+                                    //categorylist.add(dataSnapshotobject.getKey());
+                                    mDatabaseReference.child(unique_id).child("categories").child(dataSnapshotobject.getKey().toString()).setValue("nothing");
+                                }
+                                mDatabaseReference.child(unique_id).child("address").setValue("nothing");
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
 
 
-                        mDatabaseReference.child(unique_id).setValue(user);
                         mFirebaseAuth.signOut();
-                        Intent intent = new Intent(LoginSignUpActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginSignUpActivity.this, LoginSignUpActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         finish();

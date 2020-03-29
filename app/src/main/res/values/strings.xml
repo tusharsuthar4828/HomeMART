@@ -15,4 +15,15 @@
     <string name="menu_send">Send</string>
     <string name="contact_us">Contact Us</string>
     <string name="about_us">About Us</string>
+    <string name="business_profile">Business Profile</string>
+    <string name="logout">Logout</string>
+    <string name="order_details">Order details</string>
+
+    <string name="aboutusmessage2">HomeMART has contributed greatly to growth, so has its staff having dedicated and professional team, focused on meeting the needs of client/ architect and educating them of what spaces can become.</string>
+    <string name="aboutusmessage1">For more than two decades, HomeMART has been successfully providing the industry, a full range of interior solutions and fit-out services. We stress on detailed initial project planning, close co-ordination, project management expertise to ensure accurate and efficiently executed projects and quality products.</string>
+    <string name="terms_and_condition">Exclusions - Electrical &amp; Electronic appliances, Wall Art, Natural / Artificial plants and any other product(s) not aforementioned.All types of civil works. Bathroom accessories. Mattress.\n\n
+1. Estimates are approximate and may vary according to final design of your home.\n\n
+2. Estimates do not include Bathroom Interiors, Flooring and Plumbing Costs.\n\n
+3. Estimate Do Not Include Electrical &amp; Electronic appliances (AC, TV, FRIDGE, OWEN ETC), Wall Art, Natural / Artificial plants and any other product(s) not aforementioned.\n\n
+4. Estimate Do Not Include 3D concept design fees. For any further questions, please email Contact Us.</string>
 </resources>

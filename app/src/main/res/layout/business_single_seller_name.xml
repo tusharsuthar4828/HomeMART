@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:paddingStart="20dp"
+    android:paddingEnd="10dp"
+    android:layout_marginTop="3dp"
+    android:background="@color/blue_300">
+
+    <TextView
+        android:id="@+id/category_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="22sp"
+        android:text="Cake"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <ImageButton
+        android:id="@+id/add_product"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_plus"
+        style="@style/flatbutton" />
+
+</LinearLayout>

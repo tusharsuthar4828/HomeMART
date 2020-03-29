@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    tools:context=".Fragments.DisplaySellerProducts">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/background_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.19" />
+
+            <LinearLayout
+                android:id="@+id/seller_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/seller_profile_image"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:maxWidth="130dp"
+                    android:maxHeight="130dp"
+                    android:minWidth="100dp"
+                    android:minHeight="100dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/loading"
+                    app:riv_border_color="@color/black"
+                    app:riv_border_width="1dip"
+                    app:riv_corner_radius="50dip"
+                    app:riv_mutate_background="false"
+                    app:riv_oval="false" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    android:paddingEnd="20dp">
+
+                    <TextView
+                        android:id="@+id/sellername_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoSizeTextType="uniform"
+                        android:textColor="@color/black"
+                        android:text="Yash's Store"
+                        android:textSize="28sp"
+                        android:autoSizeMinTextSize="20sp"
+                        android:autoSizeMaxTextSize="50sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/phoneno_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+91 9987812135"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="24sp" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:id="@+id/display_rating"
+                        style="@style/Widget.MaterialRatingBar.RatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_marginTop="10dp"
+                        android:isIndicator="true"
+                        android:rating="3.5" />
+
+                    <TextView
+                        android:textColor="@color/custom_yellow_1"
+                        android:id="@+id/description_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text="we serve a variet."/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/red_400"
+            android:text="See whats in the hood ! "
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="@color/white"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sellerproducts_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+
+
+    </LinearLayout>
+
+</FrameLayout>

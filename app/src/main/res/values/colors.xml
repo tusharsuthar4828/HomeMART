@@ -288,5 +288,5 @@
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-
+    <color name="custom_yellow_1">#93630A</color>
 </resources>
