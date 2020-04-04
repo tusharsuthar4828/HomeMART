@@ -6,7 +6,7 @@
     android:layout_margin="10dp"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="30dp">
 
     <TextView
         android:id="@+id/login_textView"
@@ -29,7 +29,7 @@
         android:scaleType="fitXY"
         app:riv_border_color="@color/black"
         app:riv_border_width="1dip"
-        app:riv_corner_radius="50dip"
+        app:riv_corner_radius="20dip"
         app:riv_mutate_background="false"
         app:riv_oval="false"
         android:src="@drawable/ic_add_placeholder"/>
@@ -47,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
+        android:maxLines="1"
         android:inputType="text" />
 
     <EditText
@@ -100,6 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Price"
+            android:maxLines="1"
             android:inputType="number" />
 
         <EditText
@@ -107,7 +109,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Unit" />
+            android:hint="Unit"
+            android:maxLines="1"/>
 
 
     </LinearLayout>

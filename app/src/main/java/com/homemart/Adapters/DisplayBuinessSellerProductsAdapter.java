@@ -9,8 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.homemart.Fragments.BusinessProfile;
 import com.homemart.R;
 import com.homemart.models.Product;
@@ -67,9 +72,25 @@ public class DisplayBuinessSellerProductsAdapter extends ExpandableRecyclerViewA
             @Override
             public void onClick(View v) {
                // Toast.makeText(holder.itemView.getContext(), FirebaseAuth.getInstance().getUid()+"hey"+product.getKey()+ " cat"+category, Toast.LENGTH_SHORT).show();
-                Toast.makeText(holder.itemView.getContext(), ""+product.getProducttype(), Toast.LENGTH_SHORT).show();
-                FirebaseDatabase.getInstance().getReference().child("sellers").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("categories").child(product.getProducttype()).child(product.getKey()).removeValue();
-            }
+                //Toast.makeText(holder.itemView.getContext(), ""+product.getProducttype(), Toast.LENGTH_SHORT).show();
+                FirebaseDatabase.getInstance().getReference().child("sellers").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("categories").child(product.getProducttype()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.getChildrenCount() == 1){
+                            FirebaseDatabase.getInstance().getReference().child("sellers").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("categories").child(product.getProducttype()).setValue("nothing");
+
+                        }else{
+                            FirebaseDatabase.getInstance().getReference().child("sellers").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("categories").child(product.getProducttype()).child(product.getKey()).removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                }
         });
 
 
@@ -97,6 +118,20 @@ public class DisplayBuinessSellerProductsAdapter extends ExpandableRecyclerViewA
                 businessProfile.prepareProduct(group.getTitle());
             }
         });
+        FirebaseDatabase.getInstance().getReference().child("links").child("category").child(group.getTitle()+"").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String mImageURL = dataSnapshot.getValue().toString();
+                Picasso.get().load(mImageURL)
+                        .placeholder(R.drawable.loading)
+                        .fit().centerCrop().into(holder.mCategoryImageView);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
@@ -104,15 +139,17 @@ public class DisplayBuinessSellerProductsAdapter extends ExpandableRecyclerViewA
 
         private TextView mCategoryName;
         private ImageButton mAddProductImageButton;
+        private ImageView mCategoryImageView;
 
         public DisplayCategoryViewHolder(View itemView) {
             super(itemView);
             mCategoryName = itemView.findViewById(R.id.category_name);
             mAddProductImageButton = itemView.findViewById(R.id.add_product);
+            mCategoryImageView = itemView.findViewById(R.id.category_imageview);
         }
 
         public void setCategoryName(ExpandableGroup group) {
-            mCategoryName.setText("Types of " + group.getTitle() + " !");
+            mCategoryName.setText(Capitalize.capitalize(group.getTitle()));
         }
 
     }

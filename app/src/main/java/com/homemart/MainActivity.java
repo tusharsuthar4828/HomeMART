@@ -2,13 +2,13 @@ package com.homemart;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,6 +19,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -86,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mProfileView = headerView.findViewById(R.id.imageView);
         mBackgroundView = headerView.findViewById(R.id.background_imageview);
 
+
+
         FirebaseDatabase.getInstance().getReference().child("sellers").child(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -112,8 +115,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new Home(), "Home").commit();
+
+        //BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+
+                switch (item.getItemId()) {
+                    case R.id.nav_chat:
+                        //toolbar.setTitle("Shop");
+                        Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.nav_party:
+                        //toolbar.setTitle("My Gifts");
+                        Toast.makeText(this, "home1", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.nav_search:
+                        //toolbar.setTitle("Cart");
+                        Toast.makeText(this, "home2", Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+                return false;
+            };
 
     @Override
     public void onBackPressed() {
@@ -140,11 +167,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.d(TAG, "onNavigationItemSelected: " + itemId);
 
         switch (itemId) {
-            case R.id.nav_home:
+            case R.id.nav_chat:
                 //Toast.makeText(this, "" + itemId, Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new Home(), "Home").commit();
                 break;
-            case R.id.nav_contactus:
+            case R.id.nav_search:
                 //Toast.makeText(this, "" + itemId, Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new ContactUs(), "ContactUs").commit();
                 break;
@@ -152,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //Toast.makeText(this, "" + itemId, Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new AboutUs(), "AboutUs").commit();
                 break;
-            case R.id.nav_business_profile:
+            case R.id.nav_party:
                 //Toast.makeText(this, "" + itemId, Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new BusinessProfile(), "BusinessProfile").commit();
                 break;

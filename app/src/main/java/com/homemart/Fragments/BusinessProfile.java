@@ -445,7 +445,7 @@ public class BusinessProfile extends Fragment {
 
     public void prepareProduct(String category_name) {
         Context context = getActivity();
-        Toast.makeText(context, "Yes", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Yes", Toast.LENGTH_SHORT).show();
 
         mBuilder = new AlertDialog.Builder(context);
         View mView = LayoutInflater.from(context).inflate(R.layout.dailog_add_product, null);
@@ -678,10 +678,10 @@ public class BusinessProfile extends Fragment {
     }
 
     private void addProduct(String imageURL, String category_name) {
-        String name = mProductName.getText().toString();
+        String name = mProductName.getText().toString().trim();
         int price = Integer.parseInt(mProductPrice.getText().toString());
-        String unit = mProductUnit.getText().toString();
-        String desc = mProductDescription.getText().toString();
+        String unit = mProductUnit.getText().toString().trim();
+        String desc = mProductDescription.getText().toString().trim();
         //int foodtype = mProductType.getText().toString();
 
 

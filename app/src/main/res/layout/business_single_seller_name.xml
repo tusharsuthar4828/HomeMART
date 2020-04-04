@@ -5,8 +5,14 @@
     android:orientation="horizontal"
     android:paddingStart="20dp"
     android:paddingEnd="10dp"
-    android:layout_marginTop="3dp"
-    android:background="@color/blue_300">
+    android:layout_marginTop="3dp">
+
+    <ImageView
+        android:id="@+id/category_imageview"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_vertical"/>
 
     <TextView
         android:id="@+id/category_name"
@@ -17,13 +23,14 @@
         android:layout_weight="1"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:gravity="center"/>
+        android:gravity="start|center_vertical"/>
 
     <ImageButton
         android:id="@+id/add_product"
-        android:layout_width="60dp"
-        android:layout_height="match_parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_plus"
+        android:layout_gravity="center_vertical"
         style="@style/flatbutton" />
 
 </LinearLayout>

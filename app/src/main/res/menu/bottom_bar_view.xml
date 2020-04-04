@@ -7,24 +7,16 @@
         <item
             android:id="@+id/nav_chat"
             android:icon="@drawable/ic_home"
-            android:title="@string/menu_home"
+            android:title="@string/chat"
             android:checked="true" />
         <item
             android:id="@+id/nav_party"
             android:icon="@drawable/ic_contacts"
-            android:title="@string/business_profile" />
+            android:title="@string/party" />
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_contacts"
-            android:title="@string/contact_us" />
-        <item
-            android:id="@+id/nav_aboutus"
-            android:icon="@drawable/ic_aboutus"
-            android:title="@string/about_us" />
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_logout"
-            android:title="@string/logout" />
+            android:title="@string/search" />
 
 
     </group>

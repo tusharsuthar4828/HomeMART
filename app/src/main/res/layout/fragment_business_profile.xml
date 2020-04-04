@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="?attr/actionBarSize"
     tools:context=".Fragments.BusinessProfile">
 
     <LinearLayout
@@ -14,7 +13,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="170dp">
 
             <ImageView
                 android:id="@+id/background_image"
@@ -32,8 +31,8 @@
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/seller_profile_image"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:maxWidth="130dp"
@@ -43,8 +42,8 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_add_placeholder"
                     app:riv_border_color="@color/black"
-                    app:riv_border_width="1dip"
-                    app:riv_corner_radius="50dip"
+                    app:riv_border_width="0dip"
+                    app:riv_corner_radius="20dip"
                     app:riv_mutate_background="false"
                     app:riv_oval="false" />
 
@@ -64,7 +63,7 @@
                         android:autoSizeTextType="uniform"
                         android:text="Yash's Store"
                         android:textColor="@color/black"
-                        android:textSize="28sp"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -73,14 +72,14 @@
                         android:layout_height="wrap_content"
                         android:text="+91 9987812135"
                         android:textColor="@color/black"
-                        android:textSize="24sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <me.zhanghai.android.materialratingbar.MaterialRatingBar
                         android:id="@+id/display_rating"
                         style="@style/Widget.MaterialRatingBar.RatingBar"
                         android:layout_width="wrap_content"
-                        android:layout_height="23sp"
+                        android:layout_height="20sp"
                         android:layout_marginTop="10dp"
                         android:isIndicator="true"
                         android:rating="3.5" />
@@ -92,7 +91,7 @@
                         android:gravity="end"
                         android:text="we serve a variet."
                         android:textColor="@color/custom_yellow_1"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -113,20 +112,34 @@
                 android:textSize="16sp" />
         </FrameLayout>
 
-        <TextView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/red_400"
-            android:gravity="center"
-            android:text="See whats in the hood ! "
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:background="@color/red_800"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:text="See whats in the hood ! "
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_restaurant_menu"/>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/sellerproducts_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/custom_orange_1"
             android:orientation="vertical" />
 
 

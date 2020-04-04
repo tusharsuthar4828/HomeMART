@@ -10,6 +10,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.homemart.R;
 import com.homemart.models.Product;
 import com.homemart.utils.Capitalize;
@@ -71,7 +75,20 @@ public class DisplaySellerProductsAdapter extends ExpandableRecyclerViewAdapter<
     @Override
     public void onBindGroupViewHolder(DisplayCategoryViewHolder holder, int flatPosition, ExpandableGroup group) {
         holder.setCategoryName(group);
+        FirebaseDatabase.getInstance().getReference().child("links").child("category").child(group.getTitle()+"").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String mImageURL = dataSnapshot.getValue().toString();
+                Picasso.get().load(mImageURL)
+                        .placeholder(R.drawable.loading)
+                        .fit().centerCrop().into(holder.mCategoryImageView);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         holder.itemView.post(new Runnable() {
             @Override
             public void run() {
@@ -82,6 +99,7 @@ public class DisplaySellerProductsAdapter extends ExpandableRecyclerViewAdapter<
                 }
             }
         });
+
 
 
     }
@@ -96,14 +114,16 @@ public class DisplaySellerProductsAdapter extends ExpandableRecyclerViewAdapter<
     class DisplayCategoryViewHolder extends GroupViewHolder {
 
         private TextView mCategoryName;
+        private ImageView mCategoryImageView;
 
         public DisplayCategoryViewHolder(View itemView) {
             super(itemView);
             mCategoryName = itemView.findViewById(R.id.category_name);
+            mCategoryImageView = itemView.findViewById(R.id.category_imageview);
         }
 
         public void setCategoryName(ExpandableGroup group) {
-            mCategoryName.setText("Types of " + group.getTitle() + " !");
+            mCategoryName.setText(Capitalize.capitalize(group.getTitle() ));
 
         }
 
