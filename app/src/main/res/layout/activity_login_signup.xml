@@ -1,208 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".BasicActivities.LoginSignUpActivity" >
+    android:background="@drawable/food"
+    android:orientation="vertical"
+    tools:context=".BasicActivties.LoginSignUpActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:context=".SplashActivity">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="74dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="74dp"
+            android:layout_marginBottom="70dp"
+            android:stateListAnimator="@animator/card_elevation_3"
+            app:cardCornerRadius="6dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="54dp"
+            android:layout_marginBottom="85dp"
+            android:stateListAnimator="@animator/card_elevation_2"
+            app:cardCornerRadius="6dp" />
+
+
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="100dp"
+            android:stateListAnimator="@animator/card_elevation_1"
+            app:cardCornerRadius="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+
+                <TextView
+                    android:id="@+id/nameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="25dp"
+                    android:fontFamily="@font/ralewayregular"
+                    android:text="H  O  M  E    M  A  R  T"
+                    android:textColor="@color/grey_600"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:transitionName="nameTransition" />
+
+
+                <EditText
+                    android:id="@+id/name_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Name"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/phoneno_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Phone No"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/email_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/password_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:padding="10dp" />
+
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="top"
+                    android:text="Agree to all terms and conditions of HOMEMART." />
+
+                <!--<Button
+                    android:id="@+id/signin_button"
+                    style="@style/raisedWhitebutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:fontFamily="@font/ralewayregular"
+                    android:gravity="center"
+                    android:stateListAnimator="@animator/card_elevation_2"
+                    android:text="Sign In"
+                    android:textAllCaps="false"
+                    android:textColor="@color/green_800"
+                    android:textStyle="bold"
+                    android:transitionName="buttonTransition" />-->
+
+                <com.nihaskalam.progressbuttonlibrary.CircularProgressButton
+                    android:id="@+id/signin_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:fontFamily="@font/ralewayregular"
+                    android:gravity="center"
+                    android:stateListAnimator="@animator/card_elevation_2"
+                    android:text="Sign In"
+                    android:textAllCaps="false"
+                    android:textColor="@color/green_800"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:transitionName="buttonTransition"
+
+                    app:pb_colorCompleteText="@color/white"
+                    app:pb_colorErrorText="@color/white"
+                    app:pb_colorIndicator="@color/green_800"
+                    app:pb_colorProgressCancelIcon="@color/white"
+                    app:pb_cornerRadius="48dp"
+                    app:pb_iconComplete="@drawable/ic_interface"
+                    app:pb_selectorComplete="@color/green_800"
+                    app:pb_selectorError="@color/red_700"
+                    app:pb_selectorIdle="@color/white"
+                    app:pb_textError="Failed ! Try Again !" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/ralewayregular"
+        android:textColor="@color/grey_600"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:transitionName="nameTransition"
+        android:visibility="invisible" />
 
     <LinearLayout
+        android:id="@+id/linerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/cyan_800"
-        android:gravity="center_horizontal"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:orientation="vertical">
-        <LinearLayout
+        android:layout_height="wrap_content"
+
+        android:background="@color/green_800"
+        android:orientation="horizontal"
+
+        android:transitionName="linearLayoutTransition">
+
+        <Button
+            android:id="@+id/register_button"
+            style="@style/flatbutton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="HomeMART"
-            android:textSize="30sp"
-            android:textColor="@color/white"/>
-
-    </LinearLayout>
-
-        <LinearLayout
-            android:visibility="visible"
-            android:id="@+id/signin_linearlayout"
-            android:layout_weight="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Login !"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"/>
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/signin_email_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textCursorDrawable="@drawable/cursor"
-                android:hint="Email Id"
-                android:inputType="textEmailAddress"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_mail"
-                android:drawablePadding="10dp"
-                android:background="@null"
-                android:paddingTop="10dp"
-                android:paddingBottom="5dp"/>
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/signin_password_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textCursorDrawable="@drawable/cursor"
-                android:hint="Password"
-                android:maxLength="8"
-                android:inputType="textPassword"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_key"
-                android:drawablePadding="10dp"
-                android:background="@null"
-                android:paddingTop="5dp"
-                android:paddingBottom="10dp"/>
-
-            <Button
-                android:id="@+id/signin_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/raisedbutton"
-                android:text="Sign In"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"/>
-
-            <Button
-                android:id="@+id/register_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/flatbutton"
-                android:textStyle="bold"
-                android:text="Don't have an account ?"
-                android:layout_gravity="center"
-                android:textAllCaps="false"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:id="@+id/signup_linearlayout"
             android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Register !"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                />
+            android:fontFamily="@font/ralewayregular"
 
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/signup_name_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textCursorDrawable="@drawable/cursor"
-                android:hint="Name"
-                android:inputType="text"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_id_card"
-                android:drawablePadding="10dp"
-                android:background="@null"
-                android:paddingTop="10dp"
-                android:paddingBottom="5dp"/>
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp"
+            android:stateListAnimator="@null"
+            android:text="Don't have an account ? Create New !"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/signup_phoneno_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textCursorDrawable="@drawable/cursor"
-                android:hint="Phone No"
-                android:maxLength="10"
-                android:inputType="number"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_smartphone_2"
-                android:drawablePadding="10dp"
-                android:background="@null"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"/>
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/signup_email_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textCursorDrawable="@drawable/cursor"
-                android:hint="Email Id"
-                android:inputType="textEmailAddress"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_mail"
-                android:drawablePadding="10dp"
-                android:background="@null"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"/>
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/signup_password_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textCursorDrawable="@drawable/cursor"
-                android:hint="Password"
-                android:maxLength="8"
-                android:inputType="textPassword"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_key"
-                android:drawablePadding="10dp"
-                android:background="@null"
-                android:paddingTop="5dp"
-                android:paddingBottom="10dp"/>
-            <Button
-                android:id="@+id/signup_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/raisedbutton"
-                android:text="Sign up"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textAllCaps="false"/>
-            <Button
-                android:id="@+id/registered_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/flatbutton"
-                android:text="Registred User ?"
-                android:layout_gravity="center"
-                android:textAllCaps="false"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
+            android:textStyle="bold" />
 
     </LinearLayout>
-</ScrollView>
+
+
+</LinearLayout>

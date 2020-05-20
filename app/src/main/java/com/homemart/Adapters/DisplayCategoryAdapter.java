@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DataSnapshot;
 import com.homemart.Fragments.DisplayAllSellers;
 import com.homemart.R;
+import com.homemart.utils.Capitalize;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -41,7 +42,8 @@ public class DisplayCategoryAdapter extends RecyclerView.Adapter<DisplayCategory
 
     @Override
     public void onBindViewHolder(@NonNull DisplayCategoryViewHolder holder, int position) {
-        holder.mNameTextView.setText(mCategoryList.get(position).getKey());
+        holder.mNameTextView.setText(Capitalize.capitalize(mCategoryList.get(position).getKey()));
+
         holder.mProductCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

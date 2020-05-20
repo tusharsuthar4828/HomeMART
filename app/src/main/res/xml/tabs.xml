@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        drawable="@drawable/ic_home"
+        text="Home" />
+
+    <tab
+        drawable="@drawable/ic_nearby"
+        text="Near By" />
+
+    <tab
+        drawable="@drawable/ic_business"
+        text="Business" />
+
+    <tab
+        drawable="@drawable/ic_profile"
+        text="Account" />
+
+</tabs>

@@ -38,7 +38,7 @@
         android:background="@color/cyan_800"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
-        app:menu="@menu/bottom_bar_view" />
+        app:menu="@menu/menu_bottom" />
 
 
 </LinearLayout>

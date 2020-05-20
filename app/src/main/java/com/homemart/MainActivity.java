@@ -27,7 +27,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.homemart.BasicActivities.LoginSignUpActivity;
 import com.homemart.Fragments.AboutUs;
 import com.homemart.Fragments.BusinessProfile;
 import com.homemart.Fragments.ContactUs;
@@ -126,15 +125,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             = item -> {
 
                 switch (item.getItemId()) {
-                    case R.id.nav_chat:
+                    case R.id.nav_home:
                         //toolbar.setTitle("Shop");
                         Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
                         return true;
-                    case R.id.nav_party:
+                    case R.id.nav_nearby:
                         //toolbar.setTitle("My Gifts");
                         Toast.makeText(this, "home1", Toast.LENGTH_SHORT).show();
                         return true;
-                    case R.id.nav_search:
+                    case R.id.nav_business:
                         //toolbar.setTitle("Cart");
                         Toast.makeText(this, "home2", Toast.LENGTH_SHORT).show();
                         return true;
@@ -167,11 +166,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.d(TAG, "onNavigationItemSelected: " + itemId);
 
         switch (itemId) {
-            case R.id.nav_chat:
+            case R.id.nav_home:
                 //Toast.makeText(this, "" + itemId, Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new Home(), "Home").commit();
                 break;
-            case R.id.nav_search:
+            case R.id.nav_business:
                 //Toast.makeText(this, "" + itemId, Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new ContactUs(), "ContactUs").commit();
                 break;
@@ -179,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //Toast.makeText(this, "" + itemId, Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new AboutUs(), "AboutUs").commit();
                 break;
-            case R.id.nav_party:
+            case R.id.nav_nearby:
                 //Toast.makeText(this, "" + itemId, Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new BusinessProfile(), "BusinessProfile").commit();
                 break;
@@ -190,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     //mUserNameTextView.setText("User not logged");
                     //mEmailTextView.setText("Click here to login !");
                     //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_conatiner, new Home(),"HOME").commit();
-                    startActivity(new Intent(MainActivity.this, LoginSignUpActivity.class));
+                    startActivity(new Intent(MainActivity.this, SplashActivity.class));
                     finish();
                 }
 
